@@ -1,14 +1,21 @@
-//
-//  main.c
-//  Interpretador Aritmético
-//
-//  Created by Kevin Littles on 29/03/22.
-//
-
 #include <stdio.h>
+#include <stdlib.h>
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    printf("Hello, World!\n");
-    return 0;
+int main(void) {
+    
+    char url[] = "RPN.txt";
+    char ch;
+    FILE *arq;
+    
+    arq = fopen(url, "r");
+    if(arq == NULL)
+        printf("Erro, nao foi possivel abrir o arquivo\n");
+    else
+        while( (ch=fgetc(arq))!= EOF )
+     putchar(ch);
+
+    fclose(arq);
+
+    return(0);
+    
 }
