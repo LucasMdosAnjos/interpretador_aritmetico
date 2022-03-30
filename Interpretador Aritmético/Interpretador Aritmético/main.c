@@ -3,7 +3,7 @@
 
 int main(void) {
     
-    char url[] = "RPN.txt";
+    char url[] = "../RPN.txt";
     char ch;
     FILE *arq;
     
