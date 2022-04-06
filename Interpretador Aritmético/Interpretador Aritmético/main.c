@@ -1,21 +1,34 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+int main(void)
+{
 
-int main(void) {
-    
     char url[] = "../RPN.txt";
     char ch;
-    FILE *arq;
-    
-    arq = fopen(url, "r");
-    if(arq == NULL)
+    char texto_str[4];
+    FILE *pont_arq;
+
+    pont_arq = fopen(url, "r");
+    if (pont_arq == NULL)
+    {
         printf("Erro, nao foi possivel abrir o arquivo\n");
+    }
     else
-        while( (ch=fgetc(arq))!= EOF )
-     putchar(ch);
+    {
+        while (fgets(texto_str, 4, pont_arq) != NULL){
+           // printf("%s",texto_str);
+            int tamanho = strlen(texto_str);
+            int i = 0;
+            for( i= 0; i < tamanho ; i++){
+                //Lógica
+                printf("%c",texto_str[i]);
+            }
+        }
+        
+    }
 
-    fclose(arq);
+    fclose(pont_arq);
 
-    return(0);
-    
+    return (0);
 }
