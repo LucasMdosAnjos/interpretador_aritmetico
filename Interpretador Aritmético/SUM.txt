@@ -1,0 +1,11 @@
+#define __SFR_OFFSET 0
+#include "avr/io.h"
+
+.global main
+
+main:
+
+mov ax,5
+add ax,5
+
+ret
