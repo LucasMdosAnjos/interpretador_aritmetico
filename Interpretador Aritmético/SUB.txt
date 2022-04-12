@@ -4,8 +4,11 @@
 .global main
 
 main:
+ldi r16, 0b1111111
+out DDRB, r16
 
-mov bx,4
-sub bx,5
-
-ret
+start:ldi r16,4
+ldi r17,5
+sub r16, r17
+out PORTB, r16
+rjmp start
