@@ -4,10 +4,13 @@
 .global main
 
 main:
+ldi r16, 0b1111111
+out DDRB, r16
 
-mov al,6
+start:mov al,6
 mov bl,5
 imul bl
 add ax, 0
 
-ret
+out PORTB, r16
+rjmp start

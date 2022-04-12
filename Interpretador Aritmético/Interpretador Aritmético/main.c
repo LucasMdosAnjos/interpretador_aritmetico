@@ -12,8 +12,8 @@ char* rpnDivToAssembly(char* firstNumber, char* secondNumber);
 char* rpnMulToAssembly(char* firstNumber, char* secondNumber);
 char* rpnPotToAssembly(char* firstNumber, char* secondNumber);
 
-char* prefix = "#define __SFR_OFFSET 0\n#include \"avr/io.h\"\n\n.global main\n\nmain:\n\n";
-char* sufix = "\nret";
+char* prefix = "#define __SFR_OFFSET 0\n#include \"avr/io.h\"\n\n.global main\n\nmain:\nldi r16, 0b1111111\nout DDRB, r16\n\nstart:";
+char* sufix = "\nout PORTB, r16\nrjmp start";
 
 int main(void)
 {
@@ -105,15 +105,17 @@ int main(void)
 
 char* rpnSumToAssembly(char* firstNumber, char* secondNumber) {
     memset(assemblyCommand, 0, 255);
-    char* mov = "mov ax,";
-    char* add = "add ax,";
+    char* ldi1 = "ldi r16,";
+    char* ldi2 = "ldi r17,";
+    char* add = "add r16, r17";
     strcat(assemblyCommand, prefix);
-    strcat(assemblyCommand, mov);
+    strcat(assemblyCommand, ldi1);
     strcat(assemblyCommand, firstNumber);
     strcat(assemblyCommand, "\n");
-    strcat(assemblyCommand, add);
+    strcat(assemblyCommand, ldi2);
     strcat(assemblyCommand, secondNumber);
     strcat(assemblyCommand, "\n");
+    strcat(assemblyCommand, add);
     strcat(assemblyCommand, sufix);
 
     return assemblyCommand; //resultado em ax
@@ -121,15 +123,17 @@ char* rpnSumToAssembly(char* firstNumber, char* secondNumber) {
 
 char* rpnSubToAssembly(char firstNumber[], char secondNumber[]) {
     memset(assemblyCommand, 0, 255);
-    char* mov = "mov bx,";
-    char* sub = "sub bx,";
+    char* ldi1 = "ldi r16,";
+    char* ldi2 = "ldi r17,";
+    char* sub = "sub r16, r17";
     strcat(assemblyCommand, prefix);
-    strcat(assemblyCommand, mov);
+    strcat(assemblyCommand, ldi1);
     strcat(assemblyCommand, firstNumber);
     strcat(assemblyCommand, "\n");
-    strcat(assemblyCommand, sub);
+    strcat(assemblyCommand, ldi2);
     strcat(assemblyCommand, secondNumber);
     strcat(assemblyCommand, "\n");
+    strcat(assemblyCommand, sub);
     strcat(assemblyCommand, sufix);
 
     return assemblyCommand; //resultado em bx
