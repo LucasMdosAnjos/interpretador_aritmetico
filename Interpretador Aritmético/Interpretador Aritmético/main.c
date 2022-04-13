@@ -12,7 +12,7 @@ char* rpnDivToAssembly(char* firstNumber, char* secondNumber);
 char* rpnMulToAssembly(char* firstNumber, char* secondNumber);
 char* rpnPotToAssembly(char* firstNumber, char* secondNumber);
 
-char* prefix = "#define __SFR_OFFSET 0\n#include \"avr/io.h\"\n\n.global main\n\nmain:\nldi r16, 0b1111111\nout DDRB, r16\n\nstart:";
+char* prefix = "main:\nldi r16, 0b1111111\nout DDRB, r16\n\nstart:";
 char* sufix = "\nout PORTB, r16\nrjmp start";
 
 int main(void)
