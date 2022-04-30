@@ -1,0 +1,9 @@
+main:
+ldi r16, 0b1111111
+out DDRB, r16
+
+start:ldi r16,5
+ldi r17,+
+add r16, r17
+out PORTB, r16
+rjmp start
